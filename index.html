@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <title>Project Codename: Spaceshooter</title>
+        <script src="js/base/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/base/game.js" type="text/javascript" charset="utf-8"></script>
+        <link rel="stylesheet" href="styles.css" type="text/css" media="screen" charset="utf-8">
+    </head>
+    
+<body>
+	<div id="gamecontainer">
+		<canvas id="gamecanvas" width="960" height="540" class="gamelayer"></canvas>
+    
+	<div id="gamestartscreen" class="gamelayer">
+    	<span id="campaign" onClick="campaignselection.start();">Campaign</span><br>
+        <span id="multiplayer" onClick="multiplayerselection.start();">Multiplayer</span><br>
+        <span id="options" onclick = "optionsscreen.start();">Options</span><br>
+        <span id="extras" onclick = "extrasscreen.start();">Extras</span><br>
+        <span id="quit" onclick = "quit.start();">Quit</span><br>
+    </div>
+    
+    
+	</div>
+</body>
+</html>

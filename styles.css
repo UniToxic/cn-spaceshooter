@@ -1,0 +1,33 @@
+#gamecontainer {
+	width:960px;
+	height:540px;
+	background: url(images/screens/splashscreen.png);
+	border: 1px solid black;
+}
+.gamelayer {
+	width:960px;
+	height:540px;
+	position:absolute;
+	display:none;
+}
+/* Game Starting Menu Screen */
+#gamestartscreen {
+	padding-top:250px;
+}
+#gamestartscreen img {
+	margin:10px;
+	cursor:pointer;
+}
+#gamestartscreen span {
+    margin:110px;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 20px;
+    cursor:pointer;
+    color:#ecf6fc;
+	line-height:150%;
+	text-align:left; 
+	text-transform:uppercase;     
+}
+#gamestartscreen span:hover {
+    color:#ff530d;
+}
