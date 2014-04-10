@@ -1,0 +1,28 @@
+{
+  "name": "cn-spaceshooter",
+  "version": "0.1.0",
+  "homepage": "https://github.com/UniToxic/cn-spaceshooter",
+  "authors": [
+    "(Shaun Taylor)",
+    "(James Delibas)"
+  ],
+  "description": "Space shooter",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "grunt": "^0.4.4",
+    "grunt-contrib-concat": "^0.4.0",
+    "grunt-contrib-imagemin": "^0.6.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-newer": "^0.7.0",
+    "grunt-processhtml": "^0.3.0"
+  }
+}
