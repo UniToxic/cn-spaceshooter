@@ -63,7 +63,7 @@ module.exports = function(grunt) {
       watch: {
         scripts: {
           files: [
-              'index.html',
+              'src/index.html',
               'src/css/*.css',
               'src/css/**/*.css',
               'src/js/*.js',
@@ -89,6 +89,14 @@ module.exports = function(grunt) {
             dest: 'dist/image/'
           }]
         }
+      },
+
+      copy: {
+        main: {
+          files: [
+            {expand: true, cwd: 'src/audio/', src: ['**/*.{wav,ogg,mp3,txt}'], dest: 'dist/audio/'}
+          ]
+        }
       }
 
   });
@@ -98,10 +106,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-processhtml');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-newer');
-
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   grunt.registerTask('dev', ['watch:scripts', 'newer:imagemin']);
-  grunt.registerTask('build-dist', ['concat', 'processhtml:dist', 'imagemin']);
-  grunt.registerTask('build-dev', ['concat', 'processhtml:dev', 'imagemin']);
+  grunt.registerTask('build-dist', ['concat', 'processhtml:dist', 'imagemin', 'copy:main']);
+  grunt.registerTask('build-dev', ['concat', 'processhtml:dev', 'imagemin', 'copy:main']);
 
 };
