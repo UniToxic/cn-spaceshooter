@@ -6,21 +6,17 @@
         <link rel="stylesheet" href="<%= title %>.css" type="text/css" media="screen" charset="utf-8">
     </head>
     
+    <style>
+    html,body{
+        overflow:hidden;
+        width:  100%;
+        height: 100%;
+        margin: 0px;
+    }
+    </style>
 <body>
-	<div id="gamecontainer">
-		<canvas id="gamecanvas" width="960" height="540" class="gamelayer"></canvas>
-    
-	<div id="gamestartscreen" class="gamelayer">
-    	<span id="campaign" onClick="campaignselection.start();">Campaign</span><br>
-        <span id="multiplayer" onClick="multiplayerselection.start();">Multiplayer</span><br>
-        <span id="options" onclick = "optionsscreen.start();">Options</span><br>
-        <span id="extras" onclick = "extrasscreen.start();">Extras</span><br>
-        <span id="quit" onclick = "quit.start();">Quit</span><br>
-    </div>
-    
-    
-	</div>
     <script src="<%= library %>.js" type="text/javascript" charset="utf-8"></script>
+    <script src="<%= engine %>.js" type="text/javascript" charset="utf-8"></script>
     <script src="<%= title %>.js" type="text/javascript" charset="utf-8"></script>
 
 </body>

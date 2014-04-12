@@ -22,15 +22,17 @@ module.exports = function(grunt) {
           files: {           
             'dist/<%= pkg.name %>-<%= pkg.version %>.js': [
               'src/js/*.js',
-              'src/js/objects/*.js',
-              'src/js/**/*.js'         
+              'src/js/**/*.js'
+            ],
+            'dist/engine-<%= pkg.version %>.js': [
+              'src/engine/**/*.js'
             ],
             'dist/<%= pkg.name %>-<%= pkg.version %>.css': [
               'src/css/*.css',
               'src/css/**/*.css'
             ]
           }
-        }
+        },
       },
 
       processhtml: {
@@ -39,7 +41,8 @@ module.exports = function(grunt) {
             process: true,
             data: {
               title: '<%= pkg.name %>-<%= pkg.version %>',
-              library: '<%= pkg.name %>-<%= pkg.version %>' + '-lib-dev'
+              library: '<%= pkg.name %>-<%= pkg.version %>' + '-lib-dev',
+              engine : 'engine-<%= pkg.version %>'
             }
           },
           files: {
@@ -51,7 +54,8 @@ module.exports = function(grunt) {
             process: true,
             data: {
               title: '<%= pkg.name %>-<%= pkg.version %>',
-              library: '<%= pkg.name %>-<%= pkg.version %>' + '-lib-dist'
+              library: '<%= pkg.name %>-<%= pkg.version %>' + '-lib-dist',
+              engine : 'engine-<%= pkg.version %>'
             }
           },
           files: {
@@ -63,12 +67,13 @@ module.exports = function(grunt) {
       watch: {
         scripts: {
           files: [
-              'index.html',
+              'src/index.html',
               'src/css/*.css',
               'src/css/**/*.css',
               'src/js/*.js',
-              'src/js/objects/*.js',
-              'src/js/**/*.js'
+              'src/js/**/*.js',
+              'src/engine/*.js',
+              'src/engine/**/*.js'
           ],
           tasks: ['concat:dynamic','processhtml:dev'],
           options: {
