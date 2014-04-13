@@ -1,6 +1,7 @@
 // sprite constructor function
 ENGINE.Canvas = function(options) {
 
+	this.dataType = "canvas";
 	this.element = document.createElement("canvas");
 	this.context = this.element.getContext("2d");
 	document.getElementsByTagName("body")[0].appendChild(this.element);
@@ -12,6 +13,8 @@ ENGINE.Canvas = function(options) {
 	this.fps = options.fps || 30;
 	this.paused = options.pause || false;
 
+	this.element.style.cursor = "none";
+	
 	this.ready = false;
 	this.drawList = new Array();
 
