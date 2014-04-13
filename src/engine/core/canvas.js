@@ -36,6 +36,9 @@ ENGINE.Canvas.prototype.resize = function() {
 
 		this.element.width = window.innerWidth;
 		this.element.height = window.innerHeight;
+		this.width = window.innerWidth;
+		this.height = window.innerHeight;
+
 		this.ready = true;
 
 		window.onresize = function(event) {
@@ -43,6 +46,8 @@ ENGINE.Canvas.prototype.resize = function() {
 			this.ready = false;
 			this.element.width = window.innerWidth;
 			this.element.height = window.innerHeight;
+			this.width = window.innerWidth;
+			this.height = window.innerHeight;
 			this.ready = true;
 
 		}.bind(this);
