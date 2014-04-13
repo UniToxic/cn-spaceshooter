@@ -3,17 +3,20 @@ ENGINE.Canvas = function(options) {
 
 	this.element = document.createElement("canvas");
 	this.context = this.element.getContext("2d");
+	document.getElementsByTagName("body")[0].appendChild(this.element);
 
-	var options = options || {};
+	options = options || {};
 	this.color = options.color || "#9ea7b8";
 	this.width = options.width || 0;
 	this.height = options.height || 0;
 	this.fps = options.fps || 30;
+	this.paused = options.pause || false;
 
-	document.getElementsByTagName("body")[0].appendChild(this.element);
+	this.ready = false;
+	this.drawList = new Array();
 
 	this.resize();
-	this.draw();
+	this.drawLoop();
 
 	return this;
 
@@ -27,25 +30,39 @@ ENGINE.Canvas.prototype.resize = function() {
 
 		this.element.width = this.width;
 		this.element.height = this.height;
-
+		this.ready = true;
 		return;
 	} else {
 
 		this.element.width = window.innerWidth;
 		this.element.height = window.innerHeight;
-			
+		this.ready = true;
+
 		window.onresize = function(event) {
 
+			this.ready = false;
 			this.element.width = window.innerWidth;
 			this.element.height = window.innerHeight;
-			this.draw();
+			this.ready = true;
 
 		}.bind(this);
 	}
 
 };
 
+ENGINE.Canvas.prototype.drawLoop = function(){
+
+	setInterval((function() {
+		if(!this.paused && this.ready){
+			this.draw();
+		}
+	}.bind(this)), 1000 / this.fps);
+
+};
+
 ENGINE.Canvas.prototype.draw = function(){
+
+    this.refresh();
 
 	this.context.fillStyle = this.color;
 	this.context.fillRect (0, 0, this.element.width, this.element.height);
@@ -61,4 +78,14 @@ ENGINE.Canvas.prototype.draw = function(){
 	this.context.fillStyle = "rgba(0, 0, 200, 0.5)";
 	this.context.fillRect (30, 30, 55, 50);
 
+	if(this.drawList.length > 0){
+		for (var i = this.drawList.length - 1; i >= 0; i-=1) {
+			this.context.drawImage(this.drawList[i].texture, this.drawList[i].x, this.drawList[i].y , this.drawList[i].width, this.drawList[i].height);
+		}
+	}
+
+};
+
+ENGINE.Canvas.prototype.refresh = function(){
+	this.context.clearRect(0, 0, this.width, this.height);
 };
