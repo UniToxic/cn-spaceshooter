@@ -10,11 +10,11 @@ ENGINE.Canvas = function(options) {
 	this.color = options.color || "#9ea7b8";
 	this.width = options.width || 0;
 	this.height = options.height || 0;
-	this.fps = options.fps || 30;
+	this.fps = options.fps || 60;
 	this.paused = options.pause || false;
 
 	this.element.style.cursor = "none";
-	
+
 	this.ready = false;
 	this.drawList = new Array();
 
@@ -88,7 +88,12 @@ ENGINE.Canvas.prototype.draw = function(){
 
 	if(this.drawList.length > 0){
 		for (var i = this.drawList.length - 1; i >= 0; i-=1) {
-			this.context.drawImage(this.drawList[i].texture, this.drawList[i].x, this.drawList[i].y , this.drawList[i].width, this.drawList[i].height);
+			this.context.save();
+			this.context.translate( this.drawList[i].x, this.drawList[i].y);
+			this.context.translate( this.drawList[i].width / 2, this.drawList[i].height / 2);
+			this.context.rotate(this.drawList[i].rotation);
+			this.context.drawImage(this.drawList[i].texture, -this.drawList[i].width / 2, -this.drawList[i].height / 2);
+			this.context.restore();
 		}
 	}
 
