@@ -13,8 +13,9 @@ npm install -g bower
 
 ### Setup Instructions
 
-To install all the dependencies run the npm and bower installers.
+To install all the dependencies run the grunt cli, npm and bower installers.
 ```
+npm install -g grunt-cli
 npm install
 bower install
 ```
