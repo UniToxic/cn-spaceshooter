@@ -5,8 +5,8 @@ ENGINE.Sprite = function(canvas, textureURL) {
 
 	this.canvas = canvas;
 
-    this.x = 0;
-    this.y = 0;
+    this.x = -canvas.width;
+    this.y = -canvas.height;
     this.offsetX = 0;
     this.offsetY = 0;
     this.rotation = 0;
@@ -14,6 +14,13 @@ ENGINE.Sprite = function(canvas, textureURL) {
     this.texture = new Image();
     this.texture.src = textureURL;
     this.setupTexture();
+
+
+    this.velocity = {
+    	x : 0,
+    	y : 0,
+    	apply : false
+    };
 
     return this;
     
@@ -35,11 +42,39 @@ ENGINE.Sprite.prototype.setupTexture = function(){
 
 ENGINE.Sprite.prototype.setPosition = function(x,y){
 
-	this.x = x - this.offsetX;
-	this.y = y - this.offsetY;
+	this.x = x;
+	this.y = y;
 
 };
 
 ENGINE.Sprite.prototype.rotate = function(){
+
 	this.rotation += 1 * (Math.PI/180);
+
+};
+
+ENGINE.Sprite.prototype.move = function(x,y){
+
+	this.velocity.apply = true;
+	this.velocity.x = x;
+	this.velocity.y = y;
+
+};
+
+ENGINE.Sprite.prototype.applyVelocity = function(x,y){
+	
+	if(!this.velocity.apply){
+		return;
+	}
+
+	if(this.x > this.canvas.width + this.width || this.x < 0 - this.width){
+		return;
+	}
+
+	if(this.y > this.canvas.height + this.height || this.y < 0 - this.height){
+		return;
+	}
+
+	this.setPosition(this.x + this.velocity.x, this.y + this.velocity.y);
+
 };
