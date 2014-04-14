@@ -92,7 +92,10 @@ ENGINE.Canvas.prototype.draw = function(){
 			this.context.translate( this.drawList[i].x, this.drawList[i].y);
 			this.context.translate( this.drawList[i].width / 2, this.drawList[i].height / 2);
 			this.context.rotate(this.drawList[i].rotation);
+
+			this.drawList[i].applyVelocity();
 			this.context.drawImage(this.drawList[i].texture, -this.drawList[i].width / 2, -this.drawList[i].height / 2);
+			
 			this.context.restore();
 		}
 	}
