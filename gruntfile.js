@@ -107,8 +107,14 @@ module.exports = function(grunt) {
             {expand: true, cwd: 'src/audio/', src: ['**/*.{wav,ogg,mp3,txt}'], dest: 'dist/audio/'}
           ]
         }
-      }
+      },
 
+      'gh-pages': {
+        options: {
+          base: 'dist'
+        },
+        src: ['**']
+      }
   });
 
   grunt.loadNpmTasks('grunt-contrib-concat');
@@ -117,7 +123,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-newer');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-gh-pages');
 
+
+  grunt.registerTask('page', ['gh-pages']);
   grunt.registerTask('dev', ['watch:scripts']);
   grunt.registerTask('build-dist', ['concat', 'processhtml:dist', 'imagemin', 'copy:main']);
   grunt.registerTask('build-dev', ['concat', 'processhtml:dev', 'imagemin', 'copy:main']);

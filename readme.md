@@ -1,3 +1,9 @@
+## Project Demo 
+
+[cn-spaceshooter demo page](http://unitoxic.github.io/cn-spaceshooter/)
+
+Might not be inline with master
+
 ## Project Setup
 
 ### Pre-requisites
