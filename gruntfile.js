@@ -73,9 +73,11 @@ module.exports = function(grunt) {
               'src/js/*.js',
               'src/js/**/*.js',
               'src/engine/*.js',
-              'src/engine/**/*.js'
+              'src/engine/**/*.js',
+              'src/image/*.{png,jpg,gif}',
+              'src/image/**/*.{png,jpg,gif}'
           ],
-          tasks: ['concat:dynamic','processhtml:dev'],
+          tasks: ['concat:dynamic','processhtml:dev','newer:imagemin'],
           options: {
             spawn: false,
           },
@@ -90,7 +92,10 @@ module.exports = function(grunt) {
           files: [{
             expand: true,
             cwd: 'src/image/',
-            src: ['**/*.{png,jpg,gif}'],
+            src: [
+              '*.{png,jpg,gif}',
+              '**/*.{png,jpg,gif}'
+            ],
             dest: 'dist/image/'
           }]
         }
@@ -113,7 +118,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-newer');
   grunt.loadNpmTasks('grunt-contrib-copy');
 
-  grunt.registerTask('dev', ['watch:scripts', 'newer:imagemin']);
+  grunt.registerTask('dev', ['watch:scripts']);
   grunt.registerTask('build-dist', ['concat', 'processhtml:dist', 'imagemin', 'copy:main']);
   grunt.registerTask('build-dev', ['concat', 'processhtml:dev', 'imagemin', 'copy:main']);
 
