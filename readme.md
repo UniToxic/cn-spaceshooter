@@ -37,3 +37,11 @@ Start the watcher which will listen for file changes and automatically concat cs
 ```
 grunt dev
 ```
+
+To push the current build version to github pages
+```
+grunt page
+```
+
+This will clone a local repo and push all files in dist to the gh-pages branch
+It can take upto 15 minutes for github to update the changes.
